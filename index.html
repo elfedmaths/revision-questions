@@ -10,9 +10,17 @@
     <title>Revision</title>
 </head>
 <body>
-    <nav id="nav-menu" class="tree-view"></nav>
+    <div id="menu-pane">
+        <nav id="nav-menu" class="tree-view"></nav>
+        <div id="footer">
+            <div class="corner-btn pulse-btn" id="home-btn">
+                <a href="https://elfedmaths.co.uk"><img src="./img/home-icon.svg" alt="Home"></a>
+            </div>
+            <p>&copy; 2022, M. Massey.</p>
+        </div>
+    </div>
     <div id="question" class="question-view">
-        <img src="./img/load-icon.png" onerror="this.onerror=null;this.src='./img/error-icon.png';" alt="Question" id="image-container">
+        <img src="./img/load-icon.png" alt="Question" id="image-container">
         <input type="range" min="0" max="400" value="100" id="zoom-range">
     </div>
     <div id="nav-btn">
@@ -20,9 +28,6 @@
             <p id="left-nav" class="disabled">&lt;</p>
             <p id="right-nav" class="disabled">&gt;</p>
         </div>
-    </div>
-    <div id="footer">
-        <p>&copy; 2022, M. Massey.</p>
     </div>
 </body>
 </html>

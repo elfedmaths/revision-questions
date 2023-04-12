@@ -31,9 +31,26 @@ function createNav(itemArr){
 
 const ul = document.querySelector('nav ul');
 const li = document.createElement("li");
-li.appendChild(document.createTextNode("Random"));
-li.setAttribute("id", "random-btn");
 ul.appendChild(li);
+const liContent = `Random
+    <ul>
+        <li>Mathematics
+            <ul>
+                <li data-rand='maths/found' class='disabled'>Foundation</li>
+                <li data-rand='maths/int'>Intermediate</li>
+                <li data-rand='maths/high' class='disabled'>Higher</li>
+            </ul>
+        </li>
+        <li>Numeracy
+            <ul>
+                <li data-rand='num/found' class='disabled'>Foundation</li>
+                <li data-rand='num/int'>Intermediate</li>
+                <li data-rand='num/high' class='disabled'>Higher</li>
+            </ul>
+        </li>
+    </ul>`;
+li.innerHTML = liContent;
+
 
 /* Navigation */
 
@@ -71,6 +88,7 @@ const width = container.offsetWidth;
 const zoomRange = document.getElementById('zoom-range');
 zoomRange.addEventListener('input', function() {
     const scale = this.value;
+    container.style.maxHeight = "none";
     container.style.width = (width * scale / 100) + 'px';
 });
 
@@ -90,10 +108,15 @@ linkBtns.forEach(linkBtn => {
 function loadQuestion(){
     linkBtns.forEach((linkBtn, index) => {
         if(linkBtn.classList.contains('selected')){
+            // Image Container
+            const container = document.getElementById('image-container');
+            // Reset Zoom
+            zoomRange.value = 100;
+            container.style.width = width + 'px';
+            container.style.maxHeight = "100%";
             // Load Image
             src = `./questions/${linkBtn.dataset.link}.jpeg`;
             if(!UrlExists(src)){src = './img/error-icon.png';}
-            const container = document.getElementById('image-container');
             container.src = src;
             // Previous Image
             const prevElem = linkBtns[index - 1];
@@ -109,9 +132,6 @@ function loadQuestion(){
             }else{
                 nextBtn.classList.add('disabled');
             }
-            // Reset Zoom
-            zoomRange.value = 100;
-            container.style.width = width + 'px';
         }
     });
 }
@@ -168,18 +188,22 @@ window.addEventListener("keyup", (event) => {
 /* Random Topic */
 
 let prevLinks = [];
-const randomBtn = document.getElementById('random-btn');
-randomBtn.addEventListener('click', function(){
-    let n = randomIntExcl(0, linkArr.length-1, prevLinks);
-    prevLinks.push(n);
-    src = `./questions/${linkArr[n]}.jpeg`;
-    if(!UrlExists(src)){src = './img/error-icon.png';}
-    const container = document.getElementById('image-container');
-    container.src = src;
-    prevBtn.classList.add('disabled');
-    nextBtn.classList.add('disabled');
-    zoomRange.value = 100;
-    container.style.width = width + 'px';
+const randBtns = document.querySelectorAll('li[data-rand]');
+randBtns.forEach(randBtn => {
+    randBtn.addEventListener('click', function(){
+        const container = document.getElementById('image-container');
+        const tempArr = filterArray(linkArr, randBtn.dataset.rand)
+        let n = randomIntExcl(0, tempArr.length-1, prevLinks);
+        prevLinks.push(n);
+        src = `./questions/${tempArr[n]}.jpeg`;
+        zoomRange.value = 100;
+        container.style.width = width + 'px';
+        container.style.maxHeight = "100%";
+        if(!UrlExists(src)){src = './img/error-icon.png';}
+        container.src = src;
+        prevBtn.classList.add('disabled');
+        nextBtn.classList.add('disabled');
+    });
 });
 
 /* Random Number */
@@ -202,4 +226,10 @@ function UrlExists(url){
    http.open('HEAD', url, false);
    http.send();
    return http.status!=404;
+}
+
+/* Filter Array */
+
+function filterArray(arr, query) {
+    return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
 }

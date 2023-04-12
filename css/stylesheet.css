@@ -8,9 +8,10 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    background-color: #fff;
 }
 
-.tree-view {
+#menu-pane {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,10 +19,17 @@ body {
     width: auto;
     height: 100vh;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 15px 1px #000;
+}
+
+.tree-view {
+    flex: 1 1;
+    position: relative;
     padding: 10px;
     padding-left: 20px;
-    background-color: #fff;
-    border-right: 1px solid #000;
     overflow-y: scroll;
 }
 
@@ -98,7 +106,7 @@ body {
 
 .question-view {
     width: calc(100% - 140px);
-    height: 100vh;
+    height: 100%;
     margin: 0;
     margin-left: 140px;
     padding: 10px;
@@ -111,6 +119,7 @@ body {
 
 #image-container {
     display: block;
+    max-height: 100%;
     width: 60%;
     object-fit: contain;
     padding-top: 30px;
@@ -152,34 +161,65 @@ body {
     right: 20px;
 }
 
-#footer{
-    position: fixed;
-    font-size: 12px;
-    bottom: 2px;
-    left: 10px;
-    z-index: 2;
-}
 
 ::-webkit-scrollbar-track{
-	background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 ::-webkit-scrollbar{
-	width: 10px;
+    width: 10px;
     height: 10px;
 	background-color: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb{
-	background-color: rgb(240, 240, 240);
+    background-color: rgb(240, 240, 240);
 }
 
 ::-webkit-scrollbar-thumb:vertical:hover {
-  background-color: rgb(220, 220, 220);
-  cursor: pointer;
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb:horizontal:hover {
-  background-color: rgb(220, 220, 220);
-  cursor: pointer;
+    background-color: rgb(220, 220, 220);
+    cursor: pointer;
+}
+
+#footer{
+    flex: 0 0;
+    font-size: 12px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#footer .corner-btn{
+    flex: 0 0 50px;
+    width: 50px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px #000;
+    cursor: pointer;
+}
+
+#footer .corner-btn img{
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.pulse-btn:hover img{
+    animation: pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
