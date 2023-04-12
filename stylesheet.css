@@ -1,0 +1,185 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.tree-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: auto;
+    height: 100vh;
+    margin: 0;
+    padding: 10px;
+    padding-left: 20px;
+    background-color: #fff;
+    border-right: 1px solid #000;
+    overflow-y: scroll;
+}
+
+.tree-view ul {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+.tree-view li {
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+    cursor: pointer;
+}
+
+.tree-view ul ul {
+    display: none;
+    padding-left: 10px;
+}
+  
+.tree-view ul ul li {
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+    white-space: normal;
+}
+
+.tree-view ul ul li::before {
+    content: "";
+    position: relative;
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: #000;
+    left: -20px;
+    top: 8.5px;
+}
+  
+.tree-view ul ul ul {
+    display: none;
+    padding-left: 20px;
+}
+
+.tree-view ul li .disabled {
+    color: grey;
+    cursor: no-drop;
+}
+
+.tree-view ul ul li .disabled {
+    color: grey;
+    cursor: no-drop;
+}
+
+.tree-view ul ul ul li .disabled {
+    color: grey;
+    cursor: no-drop;
+}
+
+.tree-view ul .show {
+    display: block;
+}
+
+.tree-view ul:has(ul.show){
+    display: block;
+}
+
+.tree-view ul:has(ul ul.show){
+    display: block;
+}
+
+.tree-view ul ul:has(ul.show){
+    display: block;
+}
+
+.question-view {
+    width: calc(100% - 140px);
+    height: 100vh;
+    margin: 0;
+    margin-left: 140px;
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+}
+
+#image-container {
+    display: block;
+    width: 60%;
+    object-fit: contain;
+    padding-top: 30px;
+}
+
+#nav-btn{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+#nav-btn #nav-row{
+    height: 30px;
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#nav-btn #nav-row p{
+    flex: 1 1;
+    margin: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+#nav-btn #nav-row p.disabled{
+    color: grey;
+    cursor: no-drop;
+}
+
+#zoom-range{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+}
+
+#footer{
+    position: fixed;
+    font-size: 12px;
+    bottom: 2px;
+    left: 10px;
+    z-index: 2;
+}
+
+::-webkit-scrollbar-track{
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar{
+	width: 10px;
+    height: 10px;
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: rgb(240, 240, 240);
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: rgb(220, 220, 220);
+  cursor: pointer;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheet.css">
+    <script src="./navigation.js" defer></script>
+    <script src="./script.js" defer></script>
+    <title>Revision</title>
+</head>
+<body>
+    <nav id="nav-menu" class="tree-view"></nav>
+    <div id="question" class="question-view">
+        <img src="./load-icon.png" onerror="this.onerror=null;this.src='./error-icon.png';" alt="Question" id="image-container">
+        <input type="range" min="0" max="400" value="100" id="zoom-range">
+    </div>
+    <div id="nav-btn">
+        <div id="nav-row">
+            <p id="left-nav" class="disabled">&lt;</p>
+            <p id="right-nav" class="disabled">&gt;</p>
+        </div>
+    </div>
+    <div id="footer">
+        <p>&copy; 2022, M. Massey.</p>
+    </div>
+</body>
+</html>
