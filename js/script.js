@@ -92,7 +92,7 @@ function loadQuestion(){
         if(linkBtn.classList.contains('selected')){
             // Load Image
             src = `./questions/${linkBtn.dataset.link}.jpeg`;
-            if(!UrlExists(src)){src = './error-icon.png';}
+            if(!UrlExists(src)){src = './img/error-icon.png';}
             const container = document.getElementById('image-container');
             container.src = src;
             // Previous Image
@@ -173,7 +173,7 @@ randomBtn.addEventListener('click', function(){
     let n = randomIntExcl(0, linkArr.length-1, prevLinks);
     prevLinks.push(n);
     src = `./questions/${linkArr[n]}.jpeg`;
-    if(!UrlExists(src)){src = './error-icon.png';}
+    if(!UrlExists(src)){src = './img/error-icon.png';}
     const container = document.getElementById('image-container');
     container.src = src;
     prevBtn.classList.add('disabled');
