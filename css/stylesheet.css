@@ -223,3 +223,19 @@ body {
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
 }
+
+/* Print */
+
+@media print {
+    body * {
+      visibility: hidden;
+    }
+    #question * {
+      visibility: visible !important;
+    }
+    #question {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+}

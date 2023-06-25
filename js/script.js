@@ -233,3 +233,12 @@ function UrlExists(url){
 function filterArray(arr, query) {
     return arr.filter((el) => el.toLowerCase().includes(query.toLowerCase()));
 }
+
+/* Color Background */
+
+var colorPicker = document.getElementById('color-picker');
+if(colorPicker){
+    colorPicker.addEventListener('change', function(){
+        document.body.style.background = colorPicker.value;
+    });
+}
